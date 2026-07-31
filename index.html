@@ -1,43 +1,95 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест Mini App</title>
+
+    <!-- Подключаем Telegram Web App SDK -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #1e1e1e;
+            color: #ffffff;
+            margin: 0;
             padding: 20px;
-            background: #1e1e1e;
-            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
         }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #aaaaaa;
+            margin-bottom: 30px;
+        }
+
         button {
-            padding: 12px 24px;
-            font-size: 18px;
-            background: #2ea6f6;
-            color: #fff;
+            background-color: #2ea6f6;
+            color: #ffffff;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
+            padding: 14px 28px;
+            font-size: 18px;
+            font-weight: 600;
             cursor: pointer;
+            transition: background-color 0.2s ease;
+            box-shadow: 0 4px 12px rgba(46, 166, 246, 0.3);
         }
+
         button:hover {
-            background: #1a8cd8;
+            background-color: #1a8cd8;
+        }
+
+        button:active {
+            transform: scale(0.96);
+        }
+
+        /* Стили для мобильных устройств */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 20px;
+            }
+            button {
+                width: 100%;
+                max-width: 300px;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>🧪 Тест Mini App</h1>
-    <p>Это тестовая страница для @Anonn63Bot</p>
-    <button id="sendBtn">Отправить данные боту</button>
+
+    <h1>🧪 Приложение</h1>
+    <p>Нажми кнопку, чтобы отправить данные боту.</p>
+
+    <button id="sendBtn">Отправить данные</button>
 
     <script>
-        const button = document.getElementById('sendBtn');
-        button.addEventListener('click', function() {
+        // Инициализация Web App
+        Telegram.WebApp.ready();
+
+        // Обработчик кнопки
+        document.getElementById('sendBtn').addEventListener('click', function() {
+            // Отправляем данные боту
             Telegram.WebApp.sendData('Привет от Mini App!');
+            // Закрываем приложение
             Telegram.WebApp.close();
         });
-        Telegram.WebApp.ready();
     </script>
+
 </body>
 </html>
